@@ -23,4 +23,21 @@ class TaskController extends Controller
         return view('tasks.show', ['task' => $task]);
     }
 
+    public function store(Request $request)
+    {
+        // インスタンスの作成
+        $task = new Task;
+
+        // 値の用意
+        $task->title = $request->title;
+        $task->body = $request->body;
+
+        // インスタンスに値を設定して保存
+        $task->save();
+
+        // 登録したらindexに戻る
+        return redirect(route('tasks.index'));
+
+    }
+
 }
