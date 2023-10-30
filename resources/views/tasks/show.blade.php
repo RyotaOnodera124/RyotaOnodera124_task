@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>タスク詳細</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
@@ -18,7 +19,20 @@
     <div class="task-body">
         <p>【内容】</p>
         <p>{{ $task->body }}</p>
-        <button onclick="location.href='{{ route('tasks.index') }}'">一覧へ戻る</button>
+    </div>
+
+        <div class="button-group">
+            <button onclick="location.href='{{ route('tasks.index') }}'">一覧へ戻る</button>
+            <button onclick="location.fref='{{ route('tasks.edit', $task) }}'">編集する</button>
+            <form action="{{ route('tasks.destroy', $task) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="削除する" onclick="if(!confirm('削除しますか？')){return false};">
+            </form>
+        </div>
 </body>
 
 </html>
+
+
+
