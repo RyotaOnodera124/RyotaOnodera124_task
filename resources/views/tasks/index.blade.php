@@ -9,7 +9,7 @@
 <body>
     <h1>タスク一覧</h1>
     @foreach ($tasks as $task)
-        <p>{{ $task->task }}</p>
+        <p><a href="{{ route('tasks.show', $task) }}">{{ $task->task }}</a></p>
     @endforeach
 </body>
 </html>
